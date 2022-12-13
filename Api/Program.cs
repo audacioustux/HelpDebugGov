@@ -1,6 +1,8 @@
+using HelpDebugGov.Db;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddDbContext<PostgreSqlDBContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

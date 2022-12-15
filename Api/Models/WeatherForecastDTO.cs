@@ -1,6 +1,6 @@
-namespace Api;
+namespace Api.Models;
 
-public class WeatherForecast
+public class WeatherForecastDTO
 {
     public DateOnly Date { get; set; }
 

@@ -1,10 +1,13 @@
-namespace HelpDebugGov.Db;
+namespace Api.Db;
 
+using Api.Entities;
 using Microsoft.EntityFrameworkCore;
 
-public class PostgreSqlDBContext : DbContext
+public class ApplicationContext : DbContext
 {
-    public PostgreSqlDBContext(DbContextOptions<PostgreSqlDBContext> options) : base(options) { }
+    public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
+
+    public DbSet<User> Users { get; set; } = null!;
 
     public override int SaveChanges()
     {

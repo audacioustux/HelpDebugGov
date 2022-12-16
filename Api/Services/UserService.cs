@@ -5,14 +5,14 @@ using EntityFramework.Exceptions.Common;
 
 public interface IUserService : IGenericService<User>
 {
-    Task<ServiceResponse<Guid>> Register(UserRegisterDTO userRegisterDTO);
+    Task<Guid> Register(UserRegisterDTO userRegisterDTO);
 }
 
 public class UserService : GenericService<User>, IUserService
 {
     public UserService(ApplicationContext _context) : base(_context) { }
 
-    public async Task<ServiceResponse<Guid>> Register(UserRegisterDTO userRegisterDTO)
+    public async Task<Guid> Register(UserRegisterDTO userRegisterDTO)
     {
         var user = new User
         {
@@ -23,15 +23,13 @@ public class UserService : GenericService<User>, IUserService
 
         Add(user);
 
-        var response = new ServiceResponse<Guid>();
-
         try
         {
             await _context.SaveChangesAsync();
         }
         catch (UniqueConstraintException ex)
         {
-            response.IsSuccess = false;
+            response.Success = false;
             response.Message = ex.Message;
             return response;
         }

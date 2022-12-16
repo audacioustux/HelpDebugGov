@@ -26,8 +26,7 @@ public class GenericService<T> : IGenericService<T> where T : class
         _entitySet = _context.Set<T>();
     }
     public void Add(T entity) => _entitySet.Add(entity);
-    public void AddRange(IEnumerable<T> entities) =>
-        _entitySet.AddRange(entities);
+    public void AddRange(IEnumerable<T> entities) => _entitySet.AddRange(entities);
     public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> expression) => await _entitySet.Where(expression).ToListAsync();
     public async Task<IEnumerable<T>> GetAll() => await _entitySet.ToListAsync();
     public async Task<T?> GetById(int id) => await _entitySet.FindAsync(id);

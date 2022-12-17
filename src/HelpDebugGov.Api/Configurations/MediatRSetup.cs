@@ -10,7 +10,7 @@ public static class MediatRSetup
 {
     public static IServiceCollection AddMediatRSetup(this IServiceCollection services)
     {
-        services.AddMediatR(typeof(HelpDebugGov.Application.IAssemblyMarker).GetTypeInfo().Assembly);
+        services.AddMediatR(typeof(Application.IAssemblyMarker).GetTypeInfo().Assembly);
 
         services.AddScoped<INotificationHandler<ValidationError>, ValidationErrorHandler>();
 

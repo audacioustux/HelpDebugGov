@@ -4,8 +4,8 @@ using HelpDebugGov.Api.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
-builder.Services.AddControllers(options =>
-{
+builder.Services.AddControllers(options => {
+    options.AllowEmptyInputInBodyModelBinding = true;
     options.Filters.Add<ValidationErrorResultFilter>();
 }).AddValidationSetup();
 builder.Services.AddAuthSetup(builder.Configuration);
@@ -19,23 +19,18 @@ builder.Services.AddMediatRSetup();
 builder.Services.AddScoped<ExceptionHandlerMiddleware>();
 builder.Logging.ClearProviders();
 if (builder.Environment.EnvironmentName != "Testing")
-{
     builder.Host.UseLoggingSetup(builder.Configuration);
-}
 builder.AddOpenTemeletrySetup();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-    app.UseDeveloperExceptionPage();
-}
 app.UseResponseCompression();
+if (app.Environment.IsDevelopment()) app.UseDeveloperExceptionPage();
 app.UseMiddleware(typeof(ExceptionHandlerMiddleware));
+if (app.Environment.IsDevelopment()) { app.UseSwagger(); app.UseSwaggerUI(); }
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers().RequireAuthorization();
+
 app.Run();

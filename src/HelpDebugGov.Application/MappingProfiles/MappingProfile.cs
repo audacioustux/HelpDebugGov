@@ -1,4 +1,5 @@
 using AutoMapper;
+using HelpDebugGov.Application.Features.Auth.Authenticate;
 using HelpDebugGov.Application.Features.Users.Requests;
 using HelpDebugGov.Application.Features.Users.Responses;
 using HelpDebugGov.Domain.Auth;
@@ -14,6 +15,7 @@ public class MappingProfile : Profile
         CreateMap<User, GetUserResponse>().ForMember(dest => dest.IsAdmin, opt => opt.MapFrom(x => x.Role == Roles.Admin)).ReverseMap();
         CreateMap<CreateUserRequest, User>().ForMember(dest => dest.Role,
             opt => opt.MapFrom(org => org.IsAdmin ? Roles.Admin : Roles.User));
+        CreateMap<RegisterUserRequest, User>();
         CreateMap<UpdatePasswordRequest, User>();
     }
 }

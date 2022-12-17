@@ -6,6 +6,6 @@ public static class ValidationSetup
 {
     public static void AddValidationSetup(this IMvcBuilder builder)
     {
-        builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+        builder.Services.AddValidatorsFromAssemblyContaining<Application.IAssemblyMarker>();
     }
 }

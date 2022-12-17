@@ -1,7 +1,8 @@
+using EntityFramework.Exceptions.PostgreSQL;
 using HelpDebugGov.Application.Common;
 using HelpDebugGov.Domain.Entities;
-// using HelpDebugGov.Infrastructure.Configuration;
-using EntityFramework.Exceptions.PostgreSQL;
+using HelpDebugGov.Domain.Entities.Common;
+using HelpDebugGov.Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace HelpDebugGov.Infrastructure.Context;
@@ -18,9 +19,42 @@ public class ApplicationDbContext : DbContext, IContext
 
         optionsBuilder.UseExceptionProcessor();
     }
-    
-    // protected override void OnModelCreating(ModelBuilder modelBuilder)
-    // {
-    //     modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
-    // }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
+    }
+
+    public override int SaveChanges()
+    {
+        AddTimestamps();
+        return base.SaveChanges();
+    }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        AddTimestamps();
+        return base.SaveChangesAsync(cancellationToken);
+    }
+
+    private void AddTimestamps()
+    {
+        foreach (var entry in ChangeTracker.Entries())
+        {
+            if (entry.Entity is not Entity) continue;
+
+            var now = DateTime.UtcNow;
+
+            if (entry.State == EntityState.Added)
+            {
+                ((Entity)entry.Entity).CreatedAt = now;
+                ((Entity)entry.Entity).UpdatedAt = now;
+            }
+
+            if (entry.State == EntityState.Modified)
+            {
+                ((Entity)entry.Entity).UpdatedAt = now;
+            }
+        }
+    }
 }

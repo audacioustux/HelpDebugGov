@@ -87,4 +87,14 @@ public class UserController : ControllerBase
             deleted => NoContent(),
             notFound => NotFound());
     }
+
+    [AllowAnonymous]
+    [HttpPost("register")]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    public async Task<ActionResult<GetUserResponse>> Register(RegisterUserRequest request)
+    {
+        var newAccount = await _mediator.Send(request);
+        return CreatedAtAction(nameof(GetUserById), new { id = newAccount?.Id }, newAccount);
+    }      
 }

@@ -1,0 +1,1 @@
+`dotnet ef migrations add <MigrationName> --startup-project ./src/HelpDebugGov.Api/ --project ./src/HelpDebugGov.Infrastructure`

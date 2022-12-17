@@ -1,11 +1,7 @@
 using HelpDebugGov.Application.Extensions;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-using System;
 using System.Diagnostics;
 
 namespace HelpDebugGov.Api.Configurations;

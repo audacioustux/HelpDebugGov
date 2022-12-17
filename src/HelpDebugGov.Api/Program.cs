@@ -38,4 +38,4 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers().RequireAuthorization();
-app.RunAsync();
+app.Run();

@@ -6,7 +6,7 @@ using HelpDebugGov.Domain.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ISession =  HelpDebugGov.Domain.Auth.Interfaces.ISession;
+using ISession = HelpDebugGov.Domain.Auth.Interfaces.ISession;
 
 namespace HelpDebugGov.Api.Controllers;
 
@@ -40,8 +40,7 @@ public class UserController : ControllerBase
     }
 
     [ProducesResponseType(typeof(PaginatedList<GetUserResponse>), StatusCodes.Status200OK)]
-    // [Authorize(Roles = Roles.Admin)]
-    [AllowAnonymous]
+    [Authorize(Roles = Roles.Admin)]
     [HttpGet]
     public async Task<ActionResult<PaginatedList<GetUserResponse>>> GetUsers([FromQuery] GetUsersRequest request)
     {

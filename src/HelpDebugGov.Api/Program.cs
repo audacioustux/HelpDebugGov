@@ -1,16 +1,16 @@
-using HelpDebugGov.Api.Configurations;
-
 using HelpDebugGov.Api.Common;
+using HelpDebugGov.Api.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
-builder.Services.AddControllers(options => {
+builder.Services.AddControllers(options =>
+{
     options.AllowEmptyInputInBodyModelBinding = true;
     options.Filters.Add<ValidationErrorResultFilter>();
 }).AddValidationSetup();
 builder.Services.AddAuthSetup(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerSetup();
 builder.Services.AddPersistenceSetup(builder.Configuration);
 builder.Services.AddApplicationSetup();
 builder.Services.AddCompressionSetup();
@@ -24,13 +24,20 @@ builder.AddOpenTemeletrySetup();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
-app.UseResponseCompression();
-if (app.Environment.IsDevelopment()) app.UseDeveloperExceptionPage();
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseResponseCompression();
+}
+app.UseSwaggerSetup();
 app.UseMiddleware(typeof(ExceptionHandlerMiddleware));
-if (app.Environment.IsDevelopment()) { app.UseSwagger(); app.UseSwaggerUI(); }
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers().RequireAuthorization();
 
-app.Run();
+await app.Migrate();
+await app.RunAsync();

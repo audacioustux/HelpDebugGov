@@ -1,4 +1,5 @@
 using Newtonsoft.Json.Linq;
+
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;

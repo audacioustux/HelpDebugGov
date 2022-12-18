@@ -1,11 +1,5 @@
 namespace HelpDebugGov.Application.Features.Auth.Authenticate;
 
-using HelpDebugGov.Application.Common;
-using HelpDebugGov.Application.Common.Responses;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -13,14 +7,20 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using BCrypt.Net;
+using HelpDebugGov.Application.Common;
+using HelpDebugGov.Application.Common.Responses;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 
 public class AuthenticateHandler : IRequestHandler<AuthenticateRequest, Jwt?>
 {
     private readonly IContext _context;
-    
+
     private readonly TokenConfiguration _appSettings;
-    
+
     public AuthenticateHandler(IOptions<TokenConfiguration> appSettings, IContext context)
     {
         _context = context;
@@ -35,7 +35,7 @@ public class AuthenticateHandler : IRequestHandler<AuthenticateRequest, Jwt?>
         {
             return null;
         }
-        
+
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
         var claims = new ClaimsIdentity(new Claim[]

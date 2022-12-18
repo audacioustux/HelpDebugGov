@@ -7,7 +7,7 @@ public class CreateUserValidator : AbstractValidator<CreateUserRequest>
     public CreateUserValidator()
     {
         ClassLevelCascadeMode = CascadeMode.Stop;
-        
+
         RuleFor(x => x.Email)
             .NotEmpty()
             .MaximumLength(254)

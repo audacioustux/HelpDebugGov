@@ -3,9 +3,12 @@ using HelpDebugGov.Application.Features.Auth.Authenticate;
 using HelpDebugGov.Application.Features.Users.Requests;
 using HelpDebugGov.Application.Features.Users.Responses;
 using HelpDebugGov.Domain.Auth;
+
 using MediatR;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 using ISession = HelpDebugGov.Domain.Auth.Interfaces.ISession;
 
 namespace HelpDebugGov.Api.Controllers;
@@ -96,5 +99,5 @@ public class UserController : ControllerBase
     {
         var newAccount = await _mediator.Send(request);
         return CreatedAtAction(nameof(GetUserById), new { id = newAccount?.Id }, newAccount);
-    }      
+    }
 }

@@ -1,7 +1,9 @@
 using HelpDebugGov.Application.Auth;
 using HelpDebugGov.Infrastructure.Context;
+
 using Microsoft.EntityFrameworkCore;
-using ISession =  HelpDebugGov.Domain.Auth.Interfaces.ISession;
+
+using ISession = HelpDebugGov.Domain.Auth.Interfaces.ISession;
 
 namespace HelpDebugGov.Api.Configurations;
 

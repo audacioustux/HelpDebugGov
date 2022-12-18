@@ -1,5 +1,7 @@
 namespace HelpDebugGov.Application.Features.Users.Requests;
 
+using System.Threading;
+using System.Threading.Tasks;
 using AutoMapper;
 using HelpDebugGov.Application.Common;
 using HelpDebugGov.Application.Common.Responses;
@@ -7,8 +9,6 @@ using HelpDebugGov.Application.Extensions;
 using HelpDebugGov.Domain.Auth;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System.Threading;
-using System.Threading.Tasks;
 
 public class GetUsersHandler : IRequestHandler<GetUsersRequest, PaginatedList<Responses.GetUserResponse>>
 {

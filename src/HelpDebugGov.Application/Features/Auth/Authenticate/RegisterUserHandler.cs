@@ -1,23 +1,23 @@
 namespace HelpDebugGov.Application.Features.Auth.Authenticate;
 
 using AutoMapper;
+using BCrypt.Net;
 using HelpDebugGov.Application.Common;
+using HelpDebugGov.Application.Features.Users.Responses;
 using HelpDebugGov.Domain.Entities;
 using MediatR;
-using BCrypt.Net;
-using HelpDebugGov.Application.Features.Users.Responses;
 
 public class RegisterUserHandler : IRequestHandler<RegisterUserRequest, GetUserResponse>
 {
     private readonly IContext _context;
     private readonly IMapper _mapper;
-    
+
     public RegisterUserHandler(IMapper mapper, IContext context)
     {
         _mapper = mapper;
         _context = context;
     }
-    
+
     public async Task<GetUserResponse> Handle(RegisterUserRequest request, CancellationToken cancellationToken)
     {
         var created = _mapper.Map<User>(request);

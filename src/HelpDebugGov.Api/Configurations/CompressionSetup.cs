@@ -1,5 +1,6 @@
-using Microsoft.AspNetCore.ResponseCompression;
 using System.IO.Compression;
+
+using Microsoft.AspNetCore.ResponseCompression;
 
 namespace HelpDebugGov.Api.Configurations;
 

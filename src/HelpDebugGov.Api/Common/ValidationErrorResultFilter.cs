@@ -1,11 +1,11 @@
+using System.Net;
+
 using HelpDebugGov.Application.Common;
 using HelpDebugGov.Application.Common.Handlers;
 
 using MediatR;
 
 using Microsoft.AspNetCore.Mvc.Filters;
-
-using System.Net;
 
 namespace HelpDebugGov.Api.Common;
 

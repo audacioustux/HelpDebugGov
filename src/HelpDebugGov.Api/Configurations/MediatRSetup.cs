@@ -1,8 +1,10 @@
+using System.Reflection;
+
 using HelpDebugGov.Application.Common;
 using HelpDebugGov.Application.Common.Behaviors;
 using HelpDebugGov.Application.Common.Handlers;
+
 using MediatR;
-using System.Reflection;
 
 namespace HelpDebugGov.Api.Configurations;
 

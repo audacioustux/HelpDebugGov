@@ -1,8 +1,10 @@
+using System.Diagnostics;
+
 using HelpDebugGov.Application.Extensions;
+
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-using System.Diagnostics;
 
 namespace HelpDebugGov.Api.Configurations;
 
@@ -33,7 +35,7 @@ public static class OpenTelemetrySetup
                     o.SetDbStatementForText = true;
                 });
 
-            if (jaegerConfig!= null && !string.IsNullOrWhiteSpace(jaegerConfig.GetValue<string>("AgentHost")))
+            if (jaegerConfig != null && !string.IsNullOrWhiteSpace(jaegerConfig.GetValue<string>("AgentHost")))
             {
                 telemetry.AddJaegerExporter(o =>
                 {
@@ -48,7 +50,7 @@ public static class OpenTelemetrySetup
                         ExporterTimeoutMilliseconds = 30000,
                         MaxExportBatchSize = 512,
                     };
-                });   
+                });
             }
         }).StartWithHost();
     }

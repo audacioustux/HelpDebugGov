@@ -26,7 +26,7 @@ public class ValidationPipelineBehavior<TRequest, TResponse> : IPipelineBehavior
 
         if (validator != null)
         {
-        
+
             var result = await validator.ValidateAsync(request, cancellationToken);
             errors.AddRange(result.Errors.Select(e => new ValidationError(e.ErrorCode, e.ErrorMessage, e.PropertyName)));
 
@@ -38,7 +38,7 @@ public class ValidationPipelineBehavior<TRequest, TResponse> : IPipelineBehavior
             if (errors.Count > 0)
                 return default!;
         }
-        
+
         return await next();
     }
 }

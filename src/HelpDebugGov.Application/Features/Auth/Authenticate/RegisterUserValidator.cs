@@ -7,7 +7,7 @@ public class CreateUserValidator : AbstractValidator<RegisterUserRequest>
     public CreateUserValidator()
     {
         ClassLevelCascadeMode = CascadeMode.Stop;
-        
+
         RuleFor(x => x.Handle).MaximumLength(24).MinimumLength(3);
         RuleFor(x => x.Handle).Matches(@"^(?![_.])")
             .WithMessage("Handle cannot start with underscore or dot");

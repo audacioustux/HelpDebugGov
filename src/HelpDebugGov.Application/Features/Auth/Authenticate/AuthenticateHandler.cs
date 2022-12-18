@@ -31,7 +31,7 @@ public class AuthenticateHandler : IRequestHandler<AuthenticateRequest, Jwt?>
     public async Task<Jwt?> Handle(AuthenticateRequest request, CancellationToken cancellationToken)
     {
         var user = await _context.Users.FirstOrDefaultAsync(x => x.Email.ToLower() == request.Email.ToLower(), cancellationToken);
-        if (user == null || !BCrypt.Verify(request.Password, user.Password))
+        if (user == null || !BCrypt.EnhancedVerify(request.Password, user.Password))
         {
             return null;
         }

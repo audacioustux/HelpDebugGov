@@ -1,11 +1,11 @@
 namespace HelpDebugGov.Api.Configurations;
 
+using System.Reflection;
+
 using Microsoft.OpenApi.Models;
 
 using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.SwaggerUI;
-
-using System.Reflection;
 
 public static class SwaggerSetup
 {

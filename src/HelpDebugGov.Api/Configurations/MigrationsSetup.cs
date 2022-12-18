@@ -1,11 +1,11 @@
+using System.Threading.Tasks;
+
 using HelpDebugGov.Application.Common;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-
-using System.Threading.Tasks;
 
 namespace HelpDebugGov.Api.Configurations;
 

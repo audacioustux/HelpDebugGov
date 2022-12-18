@@ -46,15 +46,9 @@ public class ApplicationDbContext : DbContext, IContext
             var now = DateTime.UtcNow;
 
             if (entry.State == EntityState.Added)
-            {
                 ((Entity)entry.Entity).CreatedAt = now;
-                ((Entity)entry.Entity).UpdatedAt = now;
-            }
-
             if (entry.State == EntityState.Modified)
-            {
                 ((Entity)entry.Entity).UpdatedAt = now;
-            }
         }
     }
 }

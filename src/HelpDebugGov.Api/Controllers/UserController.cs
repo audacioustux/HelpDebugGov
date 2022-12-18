@@ -27,21 +27,6 @@ public class UserController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost]
-    [Route("authenticate")]
-    [AllowAnonymous]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(Jwt), StatusCodes.Status200OK)]
-    public async Task<IActionResult> Authenticate([FromBody] AuthenticateRequest request)
-    {
-        var jwt = await _mediator.Send(request);
-        if (jwt == null)
-        {
-            return BadRequest(new { message = "Username or password is incorrect" });
-        }
-        return Ok(jwt);
-    }
-
     [ProducesResponseType(typeof(PaginatedList<GetUserResponse>), StatusCodes.Status200OK)]
     [Authorize(Roles = Roles.Admin)]
     [HttpGet]
@@ -72,14 +57,6 @@ public class UserController : ControllerBase
         return CreatedAtAction(nameof(GetUserById), new { id = newAccount.Id }, newAccount);
     }
 
-    [HttpPatch("password")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordRequest request)
-    {
-        await _mediator.Send(request with { Id = _session.UserId });
-        return NoContent();
-    }
-
     [Authorize(Roles = Roles.Admin)]
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -89,15 +66,5 @@ public class UserController : ControllerBase
         return result.Match<IActionResult>(
             deleted => NoContent(),
             notFound => NotFound());
-    }
-
-    [AllowAnonymous]
-    [HttpPost("register")]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status201Created)]
-    public async Task<ActionResult<GetUserResponse>> Register(RegisterUserRequest request)
-    {
-        var newAccount = await _mediator.Send(request);
-        return CreatedAtAction(nameof(GetUserById), new { id = newAccount?.Id }, newAccount);
     }
 }

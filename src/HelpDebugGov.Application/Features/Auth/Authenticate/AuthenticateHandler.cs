@@ -25,7 +25,6 @@ public class AuthenticateHandler : IRequestHandler<AuthenticateRequest, Jwt?>
     {
         _context = context;
         _appSettings = appSettings.Value;
-
     }
 
     public async Task<Jwt?> Handle(AuthenticateRequest request, CancellationToken cancellationToken)

@@ -1,8 +1,5 @@
 using HelpDebugGov.Api.Common;
 using HelpDebugGov.Api.Configurations;
-using HelpDebugGov.Application.Email;
-
-using SendGrid.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -19,11 +16,7 @@ builder.Services.AddApplicationSetup();
 builder.Services.AddCompressionSetup();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMediatRSetup();
-builder.Services.AddSendGrid(options =>
-{
-    options.ApiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY") ?? builder.Configuration["SendGrid:ApiKey"];
-});
-builder.Services.AddTransient<IEmailManager, SendGridMailer>();
+builder.Services.AddFluentEmailSetup();
 builder.Services.AddScoped<ExceptionHandlerMiddleware>();
 builder.Logging.ClearProviders();
 if (builder.Environment.EnvironmentName != "Testing")

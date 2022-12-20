@@ -14,7 +14,6 @@ public static class AuthSetup
         var tokenConfig = configuration.GetRequiredSection("TokenConfiguration");
         services.Configure<TokenConfiguration>(tokenConfig);
 
-        // configure jwt authentication
         var appSettings = tokenConfig.Get<TokenConfiguration>();
         var key = Encoding.ASCII.GetBytes(appSettings!.Secret);
         services.AddAuthentication(x =>

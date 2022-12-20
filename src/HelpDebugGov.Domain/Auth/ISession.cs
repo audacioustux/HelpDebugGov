@@ -1,4 +1,4 @@
-namespace HelpDebugGov.Domain.Auth.Interfaces;
+namespace HelpDebugGov.Domain.Auth;
 
 public interface ISession
 {

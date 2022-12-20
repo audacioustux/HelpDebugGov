@@ -9,7 +9,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using ISession = HelpDebugGov.Domain.Auth.Interfaces.ISession;
+using ISession = HelpDebugGov.Domain.Auth.ISession;
 
 namespace HelpDebugGov.Api.Controllers;
 

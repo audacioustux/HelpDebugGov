@@ -1,6 +1,6 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
-using ISession = HelpDebugGov.Domain.Auth.Interfaces.ISession;
+using ISession = HelpDebugGov.Domain.Auth.ISession;
 
 namespace HelpDebugGov.Application.Auth;
 

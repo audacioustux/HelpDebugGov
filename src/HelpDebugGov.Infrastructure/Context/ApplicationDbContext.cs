@@ -11,7 +11,7 @@ public class ApplicationDbContext : DbContext, IContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-    public DbSet<User> Users { get; set; } = null!;
+    public required DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

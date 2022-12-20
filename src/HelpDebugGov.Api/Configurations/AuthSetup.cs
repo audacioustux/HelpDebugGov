@@ -1,7 +1,8 @@
 using System.Text;
 
+using HelpDebugGov.Application.Auth;
 using HelpDebugGov.Application.Common;
-
+using ISession = HelpDebugGov.Domain.Auth.ISession;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -11,6 +12,8 @@ public static class AuthSetup
 {
     public static IServiceCollection AddAuthSetup(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<ISession, Session>();
+
         var tokenConfig = configuration.GetRequiredSection("TokenConfiguration");
         services.Configure<TokenConfiguration>(tokenConfig);
 

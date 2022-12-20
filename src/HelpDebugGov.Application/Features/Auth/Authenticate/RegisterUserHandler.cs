@@ -30,6 +30,7 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserRequest, GetUserR
         _context.Users.Add(created);
         created.Password = BCrypt.EnhancedHashPassword(request.Password);
         await _context.SaveChangesAsync(cancellationToken);
+        // TODO: should be a background job
         await _fluentEmail
             .To(created.Email, created.Name)
             .Subject("Welcome to HelpDebugGov!")

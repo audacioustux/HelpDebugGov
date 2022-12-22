@@ -39,6 +39,7 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 if (app.Environment.IsDevelopment())
 {
+    await app.Migrate();
     app.UseDeveloperExceptionPage();
 }
 else
@@ -52,5 +53,4 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers().RequireAuthorization();
 
-await app.Migrate();
 await app.RunAsync();

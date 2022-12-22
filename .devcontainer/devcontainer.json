@@ -16,7 +16,9 @@
 				"akamud.vscode-theme-onedark",
 				"ms-vscode-remote.remote-containers",
 				"PKief.material-icon-theme",
-				"vscodevim.vim"
+				"vscodevim.vim",
+				"bradlc.vscode-tailwindcss",
+				"svelte.svelte-vscode"
 			]
 		}
 	},

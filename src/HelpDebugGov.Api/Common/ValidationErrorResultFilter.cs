@@ -26,8 +26,7 @@ public class ValidationErrorResultFilter : IAsyncResultFilter
 
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
 
-            await context.HttpContext.Response.WriteAsJsonAsync(errors)
-                .ConfigureAwait(false);
+            await context.HttpContext.Response.WriteAsJsonAsync(errors).ConfigureAwait(false);
 
             // short circuit .NET request/response pipeline
             return;

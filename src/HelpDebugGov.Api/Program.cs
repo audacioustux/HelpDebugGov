@@ -3,6 +3,17 @@ using HelpDebugGov.Api.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("default",
+                      builder =>
+                      {
+                          builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                      });
+});
 builder.Services.AddControllers(options =>
 {
     options.AllowEmptyInputInBodyModelBinding = true;
@@ -25,6 +36,7 @@ builder.AddOpenTemeletrySetup();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
+app.UseHttpsRedirection();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -33,9 +45,9 @@ else
 {
     app.UseResponseCompression();
 }
-app.UseSwaggerSetup();
 app.UseMiddleware(typeof(ExceptionHandlerMiddleware));
-app.UseHttpsRedirection();
+app.UseSwaggerSetup();
+app.UseCors("default");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers().RequireAuthorization();

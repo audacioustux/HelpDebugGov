@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@fontsource/fira-code': ^4.5.12
   '@neoconfetti/svelte': ^1.0.0
   '@playwright/test': ^1.28.1
   '@sveltejs/adapter-auto': ^1.0.0
@@ -30,6 +31,7 @@ specifiers:
   vitest: ^0.25.3
 
 devDependencies:
+  '@fontsource/fira-code': 4.5.12
   '@neoconfetti/svelte': 1.0.0
   '@playwright/test': 1.29.0
   '@sveltejs/adapter-auto': 1.0.0_@sveltejs+kit@1.0.1
@@ -428,6 +430,10 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@fontsource/fira-code/4.5.12:
+    resolution: {integrity: sha512-dAVGsgiVR6jslpuXosHH4/Jf8bsAIKL1RWqjVq4WpmxL7CFHfg9hT5bAv/Y3xsEj8kDTibEgpuC3eMfr9kb02g==}
     dev: true
 
   /@humanwhocodes/config-array/0.11.8:

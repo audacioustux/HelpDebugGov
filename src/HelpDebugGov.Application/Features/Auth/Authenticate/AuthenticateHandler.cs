@@ -40,8 +40,6 @@ public class AuthenticateHandler : IRequestHandler<AuthenticateRequest, Jwt?>
         var claims = new ClaimsIdentity(new Claim[]
         {
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new(ClaimTypes.Email, user.Email),
-            new(ClaimTypes.Role, user.Role)
         });
 
         var expDate = DateTime.UtcNow.AddHours(1);

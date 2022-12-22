@@ -8,7 +8,7 @@ public class CreateUserValidator : AbstractValidator<RegisterUserRequest>
     {
         ClassLevelCascadeMode = CascadeMode.Stop;
 
-        RuleFor(x => x.Handle).MaximumLength(24).MinimumLength(3)
+        RuleFor(x => x.Handle).MinimumLength(3)
             .Matches(@"^(?![_.])")
                 .WithMessage("Handle cannot start with underscore or dot")
             .Matches(@"^(?!.*[_.]{2}).+$")
@@ -20,8 +20,8 @@ public class CreateUserValidator : AbstractValidator<RegisterUserRequest>
             .Matches(@"(?<![_.])$")
                 .WithMessage("Handle cannot end with underscore or dot");
 
-        RuleFor(x => x.Email).NotEmpty().MaximumLength(255).EmailAddress();
-        RuleFor(x => x.Password).NotEmpty().MinimumLength(8).MaximumLength(255)
+        RuleFor(x => x.Email).EmailAddress();
+        RuleFor(x => x.Password).MinimumLength(8).MaximumLength(64)
             .Matches(@"^(?=.*[a-z])")
                 .WithMessage("Password must contain at least one lowercase letter")
             .Matches(@"^(?=.*[A-Z])")

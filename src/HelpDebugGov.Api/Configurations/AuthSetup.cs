@@ -2,9 +2,11 @@ using System.Text;
 
 using HelpDebugGov.Application.Auth;
 using HelpDebugGov.Application.Common;
-using ISession = HelpDebugGov.Domain.Auth.ISession;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+
+using ISession = HelpDebugGov.Domain.Auth.ISession;
 
 namespace HelpDebugGov.Api.Configurations;
 

@@ -1,7 +1,6 @@
 using EntityFramework.Exceptions.PostgreSQL;
 using HelpDebugGov.Application.Common;
 using HelpDebugGov.Domain.Entities;
-using HelpDebugGov.Domain.Entities.Common;
 using HelpDebugGov.Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +11,8 @@ public class ApplicationDbContext : DbContext, IContext
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
     public required DbSet<User> Users { get; set; }
+    public required DbSet<Role> Roles { get; set; }
+    public required DbSet<Permission> Permissions { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -22,33 +23,8 @@ public class ApplicationDbContext : DbContext, IContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).Assembly);
-    }
-
-    public override int SaveChanges()
-    {
-        AddTimestamps();
-        return base.SaveChanges();
-    }
-
-    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        AddTimestamps();
-        return base.SaveChangesAsync(cancellationToken);
-    }
-
-    private void AddTimestamps()
-    {
-        foreach (var entry in ChangeTracker.Entries())
-        {
-            if (entry.Entity is not Entity) continue;
-
-            var now = DateTime.UtcNow;
-
-            if (entry.State == EntityState.Added)
-                ((Entity)entry.Entity).CreatedAt = now;
-            if (entry.State == EntityState.Modified)
-                ((Entity)entry.Entity).UpdatedAt = now;
-        }
+        new PermissionConfiguration().Configure(modelBuilder.Entity<Permission>());
+        new RoleConfiguration().Configure(modelBuilder.Entity<Role>());
+        new UserConfiguration().Configure(modelBuilder.Entity<User>());
     }
 }

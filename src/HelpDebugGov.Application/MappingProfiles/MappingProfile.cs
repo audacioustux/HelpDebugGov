@@ -12,9 +12,8 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         // User Map
-        CreateMap<User, GetUserResponse>().ForMember(dest => dest.IsAdmin, opt => opt.MapFrom(x => x.Role == Roles.Admin)).ReverseMap();
-        CreateMap<CreateUserRequest, User>().ForMember(dest => dest.Role,
-            opt => opt.MapFrom(org => org.IsAdmin ? Roles.Admin : Roles.User));
+        CreateMap<User, GetUserResponse>();
+        CreateMap<CreateUserRequest, User>();
         CreateMap<RegisterUserRequest, User>();
         CreateMap<UpdatePasswordRequest, User>();
     }

@@ -1,20 +1,22 @@
 using System.ComponentModel.DataAnnotations;
-using HelpDebugGov.Domain.Auth;
-using HelpDebugGov.Domain.Entities.Common;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 namespace HelpDebugGov.Domain.Entities;
 
 [Index(nameof(Email), IsUnique = true)]
 [Index(nameof(Handle), IsUnique = true)]
-public class User : Entity
+public class User
 {
-    [MaxLength(128)]
+    public Guid Id { get; protected set; } = NewId.NextGuid();
+    [MaxLength(127)]
     public required string Name { get; set; }
-    [MaxLength(64)]
+    [MaxLength(31)]
     public string? Handle { get; set; }
     [MaxLength(255)]
     public required string Email { get; set; }
     public required string Password { get; set; }
-    public required string Role { get; set; } = Roles.User;
+
+    public virtual ICollection<Role> Roles { get; set; } = new HashSet<Role>();
+    public virtual ICollection<Permission> Permissions { get; set; } = new HashSet<Permission>();
 }

@@ -15,5 +15,5 @@
 	</footer>
 </div>
 
-<style lang="">
+<style lang="ts">
 </style>

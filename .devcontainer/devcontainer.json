@@ -11,9 +11,29 @@
 		"vscode": {
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
-				"ms-dotnettools.csharp"
+				"ms-dotnettools.csharp",
+				"GitHub.copilot",
+				"akamud.vscode-theme-onedark",
+				"ms-vscode-remote.remote-containers",
+				"PKief.material-icon-theme",
+				"vscodevim.vim"
 			]
 		}
+	},
+	"settings": {
+		"workbench.colorTheme": "Atom One Dark",
+		"workbench.iconTheme": "material-icon-theme",
+		"editor.inlineSuggest.enabled": true,
+		"git.autofetch": true,
+		"files.autoSave": "onFocusChange",
+		"editor.formatOnSave": true,
+		"files.associations": {
+			"*.postcss": "css"
+		}
+	},
+	"containerEnv": {
+		"GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}",
+		"GITHUB_USER": "${localEnv:GITHUB_USER}"
 	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [

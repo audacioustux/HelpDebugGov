@@ -9,8 +9,8 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
 {
     public static readonly Role[] _roles =
     {
-        new Role { Name = Roles.User, Description = "User" },
-        new Role { Name = Roles.Superuser, Description = "Superuser" }
+        new Role { Name = Roles.User, Description = "Any logged-in user" },
+        new Role { Name = Roles.Superuser, Description = "Has all permissions" }
     };
 
     public void Configure(EntityTypeBuilder<Role> builder)
@@ -22,14 +22,11 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
             .WithMany(p => p.Roles)
             .UsingEntity(j =>
             {
-                j.HasData(
-                    PermissionConfiguration._permissions
-                        .Select(p => new
-                        {
-                            PermissionsId = p.Id,
-                            RolesId = _roles.Single(r => r.Name == Roles.Superuser).Id
-                        })
-                );
+                j.HasData(new
+                {
+                    PermissionsId = PermissionConfiguration._permissions.Single(p => p.Action == "_").Id,
+                    RolesId = _roles.Single(r => r.Name == Roles.Superuser).Id
+                });
             });
     }
 }

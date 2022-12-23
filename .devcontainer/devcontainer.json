@@ -21,7 +21,8 @@
 				"svelte.svelte-vscode",
 				"sleistner.vscode-fileutils",
 				"bierner.markdown-mermaid",
-				"yzhang.markdown-all-in-one"
+				"yzhang.markdown-all-in-one",
+				"denoland.vscode-deno"
 			]
 		}
 	},
@@ -40,13 +41,9 @@
 	"forwardPorts": [
 		5432
 	],
-	"features": {
-		"ghcr.io/devcontainers-contrib/features/npm-package:1": {
-			"package": "pnpm"
-		}
-	},
+	"features": {},
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "dotnet restore; dotnet tool restore; dotnet dev-certs https"
+	"postCreateCommand": ".devcontainer/bin/post_create.sh"
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 }

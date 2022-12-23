@@ -9,7 +9,7 @@ public class Role
     [MaxLength(63)]
     public required string Name { get; set; }
     [MaxLength(255)]
-    public required string? Description { get; set; }
+    public string? Description { get; set; }
 
     public virtual ICollection<Permission> Permissions { get; set; } = new HashSet<Permission>();
     public virtual ICollection<User> Users { get; set; } = new HashSet<User>();

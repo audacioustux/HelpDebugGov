@@ -15,7 +15,7 @@ namespace HelpDebugGov.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-// [Authorize]
+[Authorize]
 public class UserController : ControllerBase
 {
     private readonly ISession _session;
@@ -29,6 +29,7 @@ public class UserController : ControllerBase
 
     [ProducesResponseType(typeof(PaginatedList<GetUserResponse>), StatusCodes.Status200OK)]
     // [Authorize(Roles = Roles.Admin)]
+    [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult<PaginatedList<GetUserResponse>>> GetUsers([FromQuery] GetUsersRequest request)
     {

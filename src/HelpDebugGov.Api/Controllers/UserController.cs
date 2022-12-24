@@ -29,7 +29,6 @@ public class UserController : ControllerBase
     }
 
     [ProducesResponseType(typeof(PaginatedList<GetUserResponse>), StatusCodes.Status200OK)]
-    [Permissions("User.Read")]
     [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult<PaginatedList<GetUserResponse>>> GetUsers([FromQuery] GetUsersRequest request)
@@ -37,7 +36,6 @@ public class UserController : ControllerBase
         return Ok(await _mediator.Send(request));
     }
 
-    // [Authorize(Roles = Roles.Admin)]
     [HttpGet]
     [Route("{id}")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -50,7 +48,6 @@ public class UserController : ControllerBase
             notFound => NotFound());
     }
 
-    // [Authorize(Roles = Roles.Admin)]
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<ActionResult<GetUserResponse>> CreateUser(CreateUserRequest request)
@@ -59,7 +56,6 @@ public class UserController : ControllerBase
         return CreatedAtAction(nameof(GetUserById), new { id = newAccount.Id }, newAccount);
     }
 
-    // [Authorize(Roles = Roles.Admin)]
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> DeleteUser(Guid id)

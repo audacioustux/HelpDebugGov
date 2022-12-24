@@ -28,6 +28,12 @@
 - ASP.NET 7
 - EntityFrameworkCore
 - DevContainer
+<<<<<<< HEAD
+=======
+- Docker
+
+>>>>>>> 36fa30d312e92dac3e11bd1021d750cb1dcbaa18
+
 - FluentEmail
 - FluentValidation
 - MediatR
@@ -73,6 +79,8 @@ pnpm run dev
 bin/merge-gitignore.sh
 ```
 
+<<<<<<< HEAD
+
 ### TODO
 
 - [ ] Add tests
@@ -82,3 +90,11 @@ bin/merge-gitignore.sh
 ### References
 
 - <https://learn.microsoft.com/en-us/aspnet/core/security/authorization/iauthorizationpolicyprovider?view=aspnetcore-7.0>
+=======
+
+### Thanks to
+
+- <https://github.com/yanpitangui/dotnet-api-boilerplate>
+- <https://blog.joaograssi.com/series/authorization-in-asp.net-core/>
+
+>>>>>>> 36fa30d312e92dac3e11bd1021d750cb1dcbaa18

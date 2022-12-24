@@ -16,7 +16,6 @@ public class ValidationPipelineBehavior<TRequest, TResponse> : IPipelineBehavior
         _mediator = eventBus;
     }
 
-
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         var errors = new List<ValidationError>();

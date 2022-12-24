@@ -50,6 +50,7 @@ app.UseMiddleware(typeof(ExceptionHandlerMiddleware));
 app.UseSwaggerSetup();
 app.UseCors("default");
 app.UseAuthentication();
+// app.UseMiddleware<PermissionsMiddleware>();
 app.UseAuthorization();
 app.MapControllers().RequireAuthorization();
 

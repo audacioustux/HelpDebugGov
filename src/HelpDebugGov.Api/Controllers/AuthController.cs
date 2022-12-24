@@ -1,3 +1,6 @@
+using System.Security.Claims;
+
+using HelpDebugGov.Api.Common;
 using HelpDebugGov.Application.Common.Responses;
 using HelpDebugGov.Application.Features.Auth.Authenticate;
 using HelpDebugGov.Application.Features.Users.Requests;
@@ -25,6 +28,18 @@ public class AuthController : ControllerBase
     {
         _session = session;
         _mediator = mediator;
+    }
+
+    [HttpGet("claims")]
+    public IActionResult GetClaims()
+    {
+        return Ok(User.Claims.Select(c => new { c.Type, c.Value }));
+    }
+
+    [HttpGet("me")]
+    public IActionResult GetUserId()
+    {
+        return Ok(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
     }
 
     [HttpPost]

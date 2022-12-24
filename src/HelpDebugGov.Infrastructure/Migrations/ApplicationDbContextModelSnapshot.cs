@@ -44,37 +44,37 @@ namespace HelpDebugGov.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0f380000-ac14-0242-4f17-08dae4c34fe3"),
-                            Action = "User._",
+                            Id = new Guid("9c130000-ac14-0242-8960-08dae5aa0301"),
+                            Action = "User",
                             Description = "All permissions in `User` scope"
                         },
                         new
                         {
-                            Id = new Guid("0f380000-ac14-0242-5e36-08dae4c34fe3"),
+                            Id = new Guid("9c130000-ac14-0242-95ff-08dae5aa0301"),
                             Action = "User.Read",
                             Description = "Read `User` data"
                         },
                         new
                         {
-                            Id = new Guid("0f380000-ac14-0242-5e66-08dae4c34fe3"),
+                            Id = new Guid("9c130000-ac14-0242-961f-08dae5aa0301"),
                             Action = "User.Delete",
                             Description = "Delete `User` data"
                         },
                         new
                         {
-                            Id = new Guid("0f380000-ac14-0242-5e6b-08dae4c34fe3"),
+                            Id = new Guid("9c130000-ac14-0242-9623-08dae5aa0301"),
                             Action = "User.Create",
                             Description = "Create `User` data"
                         },
                         new
                         {
-                            Id = new Guid("0f380000-ac14-0242-5e6f-08dae4c34fe3"),
+                            Id = new Guid("9c130000-ac14-0242-9627-08dae5aa0301"),
                             Action = "User.Update",
                             Description = "Update `User` data"
                         },
                         new
                         {
-                            Id = new Guid("0f380000-ac14-0242-5f06-08dae4c34fe3"),
+                            Id = new Guid("9c130000-ac14-0242-962e-08dae5aa0301"),
                             Action = "_",
                             Description = "All permissions"
                         });
@@ -102,13 +102,13 @@ namespace HelpDebugGov.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0f380000-ac14-0242-2718-08dae4c34fe4"),
+                            Id = new Guid("9c130000-ac14-0242-0a70-08dae5aa0302"),
                             Description = "Any logged-in user",
                             Name = "User"
                         },
                         new
                         {
-                            Id = new Guid("0f380000-ac14-0242-2ea9-08dae4c34fe4"),
+                            Id = new Guid("9c130000-ac14-0242-0d75-08dae5aa0302"),
                             Description = "Has all permissions",
                             Name = "Superuser"
                         });
@@ -166,8 +166,8 @@ namespace HelpDebugGov.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            PermissionsId = new Guid("0f380000-ac14-0242-5f06-08dae4c34fe3"),
-                            RolesId = new Guid("0f380000-ac14-0242-2ea9-08dae4c34fe4")
+                            PermissionsId = new Guid("9c130000-ac14-0242-962e-08dae5aa0301"),
+                            RolesId = new Guid("9c130000-ac14-0242-0d75-08dae5aa0302")
                         });
                 });
 

@@ -9,8 +9,7 @@ public class PermissionConfiguration : IEntityTypeConfiguration<Permission>
 {
     public static readonly Permission[] _permissions = Enumerable.Concat(
         Permissions.GeneratePermissionsForModule("User"),
-        new List<Permission>
-        {
+        new Permission[] {
             new Permission { Action = "_", Description = "All permissions" }
         }
     ).ToArray();

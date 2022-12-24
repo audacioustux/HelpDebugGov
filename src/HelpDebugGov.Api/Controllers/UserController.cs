@@ -1,3 +1,4 @@
+using HelpDebugGov.Api.Common;
 using HelpDebugGov.Application.Common.Responses;
 using HelpDebugGov.Application.Features.Auth.Authenticate;
 using HelpDebugGov.Application.Features.Users.Requests;
@@ -28,7 +29,7 @@ public class UserController : ControllerBase
     }
 
     [ProducesResponseType(typeof(PaginatedList<GetUserResponse>), StatusCodes.Status200OK)]
-    // [Authorize(Roles = Roles.Admin)]
+    [Permissions("User.Read")]
     [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult<PaginatedList<GetUserResponse>>> GetUsers([FromQuery] GetUsersRequest request)

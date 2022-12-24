@@ -27,6 +27,18 @@ public class AuthController : ControllerBase
         _mediator = mediator;
     }
 
+    [HttpGet("claims")]
+    public IActionResult Get()
+    {
+        return Ok(User.Claims.Select(c => new { c.Type, c.Value }));
+    }
+
+    [HttpGet("test")]
+    public IActionResult Test()
+    {
+        return Ok("test");
+    }
+
     [HttpPost]
     [Route("authenticate")]
     [AllowAnonymous]

@@ -13,15 +13,31 @@
 #### Implemented
 
 - Dynamic Policy Based Auth
-- MediatR
+- Mediator pattern
+- CRUD Operations for all entities
+- Email Service
+- Validation
+- Code-First Migration & Seeding
+- Logging
+- Api Documentation
+- Auth, Email Confirmation, Password Reset & Change
+- Web UI
+
+#### Used
+
+- ASP.NET 7
+- EntityFrameworkCore
+- DevContainer
+- Docker
 - FluentEmail
 - FluentValidation
-- Code-First Migration & Seeding
-- Logging (Serilog)
-- DevContainer
-- Swagger with Auth
-- JWT based Auth, Email Confirmation, Password Reset & Change
+- MediatR
 - AutoMapper
+- Serilog
+- Swagger
+- JWT
+- SvelteKit
+- TailwindCSS
 
 #### Architecture
 
@@ -30,24 +46,35 @@
   - Domain - Domain Models
   - Application - Application Services
   - Infrastructure - Data Access Layer
-  - UI - Web UI (svelte)
+  - UI - Web UI
 
 ### Notes
+
+- bin/merge-gitignore.sh - merge all *.gitignore files into one
+- all sensitive data should be stored in environment variables via `.env` file
+- errors should not expose sensitive data to the client
+- devcontainer is used for development and highly recommended
+- [TurboRepo](https://turbo.build/repo) + [Pnpm](https://pnpm.io/) is used for monorepo management
 
 #### Commands
 
 ``` bash
-# Api Server
+# Run Api Server
 dotnet watch run --project ./src/HelpDebugGov.Api/ --launch-profile https
+# Add new Migration
 dotnet ef migrations add MigrationName --startup-project ./src/HelpDebugGov.Api/ --project ./src/HelpDebugGov.Infrastructure
+# Drop Database
 dotnet ef database drop --startup-project ./src/HelpDebugGov.Api/ --project ./src/HelpDebugGov.Infrastructure
-# UI Server
-pnpm run dev --filter ./src/HelpDebugGov.UI
+
+# Web UI in dev mode
+pnpm run dev
+
 # Miscellaneous
 ## merge all *.gitignore
-awk '(FNR==1){print "### << " FILENAME}1' *.gitignore > .gitignore
+bin/merge-gitignore.sh
 ```
 
 ### Thanks to
-- https://github.com/yanpitangui/dotnet-api-boilerplate
-- https://blog.joaograssi.com/series/authorization-in-asp.net-core/
+
+- <https://github.com/yanpitangui/dotnet-api-boilerplate>
+- <https://blog.joaograssi.com/series/authorization-in-asp.net-core/>

@@ -11,6 +11,7 @@ public static class PersistanceSetup
     {
         services.AddDbContext<ApplicationDbContext>(options =>
         {
+            // options.LogTo(Console.WriteLine).EnableSensitiveDataLogging();
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
         });
 

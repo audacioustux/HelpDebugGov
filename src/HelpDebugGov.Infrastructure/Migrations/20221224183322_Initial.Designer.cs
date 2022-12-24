@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HelpDebugGov.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221224122559_Initial")]
+    [Migration("20221224183322_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -42,42 +42,45 @@ namespace HelpDebugGov.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Action")
+                        .IsUnique();
+
                     b.ToTable("Permissions");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9c130000-ac14-0242-8960-08dae5aa0301"),
+                            Id = new Guid("e7090000-ac14-0242-8f40-08dae5dd5500"),
                             Action = "User",
                             Description = "All permissions in `User` scope"
                         },
                         new
                         {
-                            Id = new Guid("9c130000-ac14-0242-95ff-08dae5aa0301"),
+                            Id = new Guid("e7090000-ac14-0242-9d2c-08dae5dd5500"),
                             Action = "User.Read",
                             Description = "Read `User` data"
                         },
                         new
                         {
-                            Id = new Guid("9c130000-ac14-0242-961f-08dae5aa0301"),
+                            Id = new Guid("e7090000-ac14-0242-9d7e-08dae5dd5500"),
                             Action = "User.Delete",
                             Description = "Delete `User` data"
                         },
                         new
                         {
-                            Id = new Guid("9c130000-ac14-0242-9623-08dae5aa0301"),
+                            Id = new Guid("e7090000-ac14-0242-9d84-08dae5dd5500"),
                             Action = "User.Create",
                             Description = "Create `User` data"
                         },
                         new
                         {
-                            Id = new Guid("9c130000-ac14-0242-9627-08dae5aa0301"),
+                            Id = new Guid("e7090000-ac14-0242-9d89-08dae5dd5500"),
                             Action = "User.Update",
                             Description = "Update `User` data"
                         },
                         new
                         {
-                            Id = new Guid("9c130000-ac14-0242-962e-08dae5aa0301"),
+                            Id = new Guid("e7090000-ac14-0242-9d92-08dae5dd5500"),
                             Action = "_",
                             Description = "All permissions"
                         });
@@ -100,18 +103,21 @@ namespace HelpDebugGov.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Roles");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9c130000-ac14-0242-0a70-08dae5aa0302"),
+                            Id = new Guid("e7090000-ac14-0242-25ba-08dae5dd5501"),
                             Description = "Any logged-in user",
                             Name = "User"
                         },
                         new
                         {
-                            Id = new Guid("9c130000-ac14-0242-0d75-08dae5aa0302"),
+                            Id = new Guid("e7090000-ac14-0242-2a54-08dae5dd5501"),
                             Description = "Has all permissions",
                             Name = "Superuser"
                         });
@@ -150,6 +156,16 @@ namespace HelpDebugGov.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("e7090000-ac14-0242-4eb3-08dae5dd554d"),
+                            Email = "tangimhossain1@gmail.com",
+                            Handle = "audacioustux",
+                            Name = "Audacious Tux",
+                            Password = "$2a$11$1TlORiQWp81dlHBjzXUAHeyi60AEZtb8w26.pLTR/untsPVlufWSK"
+                        });
                 });
 
             modelBuilder.Entity("PermissionRole", b =>
@@ -169,8 +185,8 @@ namespace HelpDebugGov.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            PermissionsId = new Guid("9c130000-ac14-0242-962e-08dae5aa0301"),
-                            RolesId = new Guid("9c130000-ac14-0242-0d75-08dae5aa0302")
+                            PermissionsId = new Guid("e7090000-ac14-0242-9d92-08dae5dd5500"),
+                            RolesId = new Guid("e7090000-ac14-0242-2a54-08dae5dd5501")
                         });
                 });
 
@@ -202,6 +218,13 @@ namespace HelpDebugGov.Infrastructure.Migrations
                     b.HasIndex("UsersId");
 
                     b.ToTable("RoleUser");
+
+                    b.HasData(
+                        new
+                        {
+                            RolesId = new Guid("e7090000-ac14-0242-2a54-08dae5dd5501"),
+                            UsersId = new Guid("e7090000-ac14-0242-4eb3-08dae5dd554d")
+                        });
                 });
 
             modelBuilder.Entity("PermissionRole", b =>

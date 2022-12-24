@@ -36,7 +36,7 @@ public class AuthController : ControllerBase
         return Ok(User.Claims.Select(c => new { c.Type, c.Value }));
     }
 
-    [HttpGet("me")]
+    [HttpGet("id")]
     public IActionResult GetUserId()
     {
         return Ok(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);

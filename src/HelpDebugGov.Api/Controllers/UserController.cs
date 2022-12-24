@@ -29,7 +29,7 @@ public class UserController : ControllerBase
     }
 
     [ProducesResponseType(typeof(PaginatedList<GetUserResponse>), StatusCodes.Status200OK)]
-    [AllowAnonymous]
+    [Permissions("User.Read")]
     [HttpGet]
     public async Task<ActionResult<PaginatedList<GetUserResponse>>> GetUsers([FromQuery] GetUsersRequest request)
     {

@@ -5,6 +5,7 @@ using BCrypt.Net;
 using FluentEmail.Core;
 using HelpDebugGov.Application.Common;
 using HelpDebugGov.Application.Features.Users.Responses;
+using HelpDebugGov.Domain.Auth;
 using HelpDebugGov.Domain.Entities;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -28,6 +29,7 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserRequest, GetUserR
     {
         var created = _mapper.Map<User>(request);
         _context.Users.Add(created);
+        _context.Roles.First(r => r.Name == Roles.User).Users.Add(created);
         created.Password = BCrypt.EnhancedHashPassword(request.Password);
         await _context.SaveChangesAsync(cancellationToken);
         // TODO: should be a background job

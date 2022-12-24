@@ -134,12 +134,12 @@ namespace HelpDebugGov.Infrastructure.Migrations
                 columns: new[] { "Id", "Action", "Description" },
                 values: new object[,]
                 {
-                    { new Guid("9c130000-ac14-0242-8960-08dae5aa0301"), "User", "All permissions in `User` scope" },
-                    { new Guid("9c130000-ac14-0242-95ff-08dae5aa0301"), "User.Read", "Read `User` data" },
-                    { new Guid("9c130000-ac14-0242-961f-08dae5aa0301"), "User.Delete", "Delete `User` data" },
-                    { new Guid("9c130000-ac14-0242-9623-08dae5aa0301"), "User.Create", "Create `User` data" },
-                    { new Guid("9c130000-ac14-0242-9627-08dae5aa0301"), "User.Update", "Update `User` data" },
-                    { new Guid("9c130000-ac14-0242-962e-08dae5aa0301"), "_", "All permissions" }
+                    { new Guid("e7090000-ac14-0242-8f40-08dae5dd5500"), "User", "All permissions in `User` scope" },
+                    { new Guid("e7090000-ac14-0242-9d2c-08dae5dd5500"), "User.Read", "Read `User` data" },
+                    { new Guid("e7090000-ac14-0242-9d7e-08dae5dd5500"), "User.Delete", "Delete `User` data" },
+                    { new Guid("e7090000-ac14-0242-9d84-08dae5dd5500"), "User.Create", "Create `User` data" },
+                    { new Guid("e7090000-ac14-0242-9d89-08dae5dd5500"), "User.Update", "Update `User` data" },
+                    { new Guid("e7090000-ac14-0242-9d92-08dae5dd5500"), "_", "All permissions" }
                 });
 
             migrationBuilder.InsertData(
@@ -147,14 +147,24 @@ namespace HelpDebugGov.Infrastructure.Migrations
                 columns: new[] { "Id", "Description", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("9c130000-ac14-0242-0a70-08dae5aa0302"), "Any logged-in user", "User" },
-                    { new Guid("9c130000-ac14-0242-0d75-08dae5aa0302"), "Has all permissions", "Superuser" }
+                    { new Guid("e7090000-ac14-0242-25ba-08dae5dd5501"), "Any logged-in user", "User" },
+                    { new Guid("e7090000-ac14-0242-2a54-08dae5dd5501"), "Has all permissions", "Superuser" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Email", "Handle", "Name", "Password" },
+                values: new object[] { new Guid("e7090000-ac14-0242-4eb3-08dae5dd554d"), "tangimhossain1@gmail.com", "audacioustux", "Audacious Tux", "$2a$11$1TlORiQWp81dlHBjzXUAHeyi60AEZtb8w26.pLTR/untsPVlufWSK" });
 
             migrationBuilder.InsertData(
                 table: "PermissionRole",
                 columns: new[] { "PermissionsId", "RolesId" },
-                values: new object[] { new Guid("9c130000-ac14-0242-962e-08dae5aa0301"), new Guid("9c130000-ac14-0242-0d75-08dae5aa0302") });
+                values: new object[] { new Guid("e7090000-ac14-0242-9d92-08dae5dd5500"), new Guid("e7090000-ac14-0242-2a54-08dae5dd5501") });
+
+            migrationBuilder.InsertData(
+                table: "RoleUser",
+                columns: new[] { "RolesId", "UsersId" },
+                values: new object[] { new Guid("e7090000-ac14-0242-2a54-08dae5dd5501"), new Guid("e7090000-ac14-0242-4eb3-08dae5dd554d") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_PermissionRole_RolesId",
@@ -162,9 +172,21 @@ namespace HelpDebugGov.Infrastructure.Migrations
                 column: "RolesId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Permissions_Action",
+                table: "Permissions",
+                column: "Action",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PermissionUser_UsersId",
                 table: "PermissionUser",
                 column: "UsersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Roles_Name",
+                table: "Roles",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleUser_UsersId",

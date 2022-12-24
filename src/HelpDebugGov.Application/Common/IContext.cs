@@ -8,6 +8,8 @@ public interface IContext : IAsyncDisposable, IDisposable
 {
     public DatabaseFacade Database { get; }
     public DbSet<User> Users { get; }
+    public DbSet<Permission> Permissions { get; }
+    public DbSet<Role> Roles { get; }
 
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

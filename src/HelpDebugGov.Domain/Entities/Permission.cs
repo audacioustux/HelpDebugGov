@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HelpDebugGov.Domain.Entities;
 
+[Index(nameof(Action), IsUnique = true)]
 public class Permission
 {
     public Guid Id { get; protected set; } = NewId.NextGuid();

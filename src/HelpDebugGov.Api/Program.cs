@@ -1,19 +1,15 @@
 using HelpDebugGov.Api.Common;
 using HelpDebugGov.Api.Configurations;
+using HelpDebugGov.Application.Auth;
+
+using ISession = HelpDebugGov.Domain.Auth.ISession;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddCors(options =>
-{
-    options.AddPolicy("default",
-                      builder =>
-                      {
-                          builder
-                            .AllowAnyOrigin()
-                            .AllowAnyMethod()
-                            .AllowAnyHeader();
-                      });
-});
+    options.AddPolicy("default", builder =>
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+builder.Services.AddScoped<ISession, Session>();
 builder.Services.AddControllers(options =>
 {
     options.AllowEmptyInputInBodyModelBinding = true;

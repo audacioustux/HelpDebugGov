@@ -21,7 +21,8 @@
 				"sleistner.vscode-fileutils",
 				"bierner.markdown-mermaid",
 				"ms-playwright.playwright",
-				"DavidAnson.vscode-markdownlint"
+				"DavidAnson.vscode-markdownlint",
+				"Gruntfuggly.todo-tree"
 			]
 		}
 	},

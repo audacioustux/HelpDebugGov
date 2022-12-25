@@ -78,7 +78,7 @@ bin/merge-gitignore.sh
 - [ ] Add tests
 - [ ] Add Production Setup
 - [ ] Add OpenTelemetry
-- [ ] resolve `TODO:`s in code (rg "// TODO:")
+- [ ] resolve `TODO:`s in code (find all with `$ rg "// TODO:"`)
 
 ### References
 

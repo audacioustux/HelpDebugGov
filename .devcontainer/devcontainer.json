@@ -1,6 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 {
 	"name": "HelpDebugGov - devcontainer",
+	"initializeCommand": "touch .env",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",

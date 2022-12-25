@@ -33,6 +33,7 @@ public class Session : ISession
     {
         var user = _context.Users.Where(u => u.Id == UserId);
 
+        // TODO: use proper ltree methods
         return await user.SelectMany(u => u.Roles)
             .SelectMany(r => r.Permissions)
             .Union(user.SelectMany(u => u.Permissions))

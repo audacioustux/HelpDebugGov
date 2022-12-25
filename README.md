@@ -61,7 +61,7 @@
 # Run Api Server
 dotnet watch run --project ./src/HelpDebugGov.Api/ --launch-profile https
 # Add new Migration
-dotnet ef migrations add MigrationName --startup-project ./src/HelpDebugGov.Api/ --project ./src/HelpDebugGov.Infrastructure
+dotnet ef migrations add Init --startup-project ./src/HelpDebugGov.Api/ --project ./src/HelpDebugGov.Infrastructure
 # Drop Database
 dotnet ef database drop --startup-project ./src/HelpDebugGov.Api/ --project ./src/HelpDebugGov.Infrastructure
 
@@ -78,6 +78,7 @@ bin/merge-gitignore.sh
 - [ ] Add tests
 - [ ] Add Production Setup
 - [ ] Add OpenTelemetry
+- [ ] `TODO:` comments
 
 ### References
 

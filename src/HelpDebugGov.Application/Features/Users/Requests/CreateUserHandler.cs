@@ -3,6 +3,7 @@ namespace HelpDebugGov.Application.Features.Users.Requests;
 using AutoMapper;
 using BCrypt.Net;
 using HelpDebugGov.Application.Common;
+using HelpDebugGov.Domain.Auth;
 using HelpDebugGov.Domain.Entities;
 using MediatR;
 using Responses;
@@ -22,8 +23,10 @@ public class CreateUserHandler : IRequestHandler<CreateUserRequest, GetUserRespo
     {
         var created = _mapper.Map<User>(request);
         _context.Users.Add(created);
-        created.Password = BCrypt.HashPassword(request.Password);
+        _context.Roles.First(r => r.Name == Roles.User).Users.Add(created);
+        created.Password = BCrypt.EnhancedHashPassword(request.Password);
         await _context.SaveChangesAsync(cancellationToken);
+
         return _mapper.Map<GetUserResponse>(created);
     }
 }

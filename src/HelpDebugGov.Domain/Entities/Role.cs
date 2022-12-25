@@ -8,7 +8,7 @@ namespace HelpDebugGov.Domain.Entities;
 public class Role
 {
     public Guid Id { get; protected set; } = NewId.NextGuid();
-    [MaxLength(63)]
+    [MaxLength(31)]
     public required string Name { get; set; }
     [MaxLength(255)]
     public string? Description { get; set; }

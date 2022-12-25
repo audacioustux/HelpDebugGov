@@ -67,13 +67,10 @@ public class AuthController : ControllerBase
 
     [AllowAnonymous]
     [HttpPost("register")]
-    // [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    // [ProducesResponseType(StatusCodes.Status201Created)]
-    public async Task<IActionResult> Register(RegisterUserRequest request)
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    public async Task<ActionResult<GetUserResponse>> CreateUser(RegisterUserRequest request)
     {
         var newAccount = await _mediator.Send(request);
-
-        return Ok(newAccount);
-        // return CreatedAtAction(nameof(UserController.GetUserById), new { id = newAccount?.Id }, newAccount);
+        return CreatedAtAction(nameof(CreateUser), new { id = newAccount.Id }, newAccount);
     }
 }

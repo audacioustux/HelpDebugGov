@@ -25,6 +25,7 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserRequest, GetUserR
         _logger = logger;
     }
 
+    // TODO: remove duplicate code between RegisterUser and CreateUser
     public async Task<GetUserResponse> Handle(RegisterUserRequest request, CancellationToken cancellationToken)
     {
         var created = _mapper.Map<User>(request);

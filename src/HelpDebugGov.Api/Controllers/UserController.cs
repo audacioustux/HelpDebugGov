@@ -17,7 +17,7 @@ namespace HelpDebugGov.Api.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
-public class UserController : ControllerBase
+public class UserController : ControllerBase // TODO: extend with generics for CRUD endpoints
 {
     private readonly ISession _session;
     private readonly IMediator _mediator;
@@ -28,14 +28,15 @@ public class UserController : ControllerBase
         _mediator = mediator;
     }
 
+    [HasPermission("User.Read")]
     [ProducesResponseType(typeof(PaginatedList<GetUserResponse>), StatusCodes.Status200OK)]
-    [Permissions("User.Read")]
     [HttpGet]
     public async Task<ActionResult<PaginatedList<GetUserResponse>>> GetUsers([FromQuery] GetUsersRequest request)
     {
         return Ok(await _mediator.Send(request));
     }
 
+    [HasPermission("User.Read.ById")]
     [HttpGet]
     [Route("{id}")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -48,6 +49,7 @@ public class UserController : ControllerBase
             notFound => NotFound());
     }
 
+    [HasPermission("User.Create")]
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<ActionResult<GetUserResponse>> CreateUser(CreateUserRequest request)
@@ -56,6 +58,7 @@ public class UserController : ControllerBase
         return CreatedAtAction(nameof(GetUserById), new { id = newAccount.Id }, newAccount);
     }
 
+    [HasPermission("User.Delete")]
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> DeleteUser(Guid id)

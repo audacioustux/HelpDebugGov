@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HelpDebugGov.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,7 +34,7 @@ namespace HelpDebugGov.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "character varying(63)", maxLength: 63, nullable: false),
+                    Name = table.Column<string>(type: "character varying(31)", maxLength: 31, nullable: false),
                     Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true)
                 },
                 constraints: table =>
@@ -134,12 +134,13 @@ namespace HelpDebugGov.Infrastructure.Migrations
                 columns: new[] { "Id", "Action", "Description" },
                 values: new object[,]
                 {
-                    { new Guid("e7090000-ac14-0242-8f40-08dae5dd5500"), "User", "All permissions in `User` scope" },
-                    { new Guid("e7090000-ac14-0242-9d2c-08dae5dd5500"), "User.Read", "Read `User` data" },
-                    { new Guid("e7090000-ac14-0242-9d7e-08dae5dd5500"), "User.Delete", "Delete `User` data" },
-                    { new Guid("e7090000-ac14-0242-9d84-08dae5dd5500"), "User.Create", "Create `User` data" },
-                    { new Guid("e7090000-ac14-0242-9d89-08dae5dd5500"), "User.Update", "Update `User` data" },
-                    { new Guid("e7090000-ac14-0242-9d92-08dae5dd5500"), "_", "All permissions" }
+                    { new Guid("25180000-ac14-0242-1c68-08dae66048f8"), "User.Read", "Read `User` data" },
+                    { new Guid("25180000-ac14-0242-1cc5-08dae66048f8"), "User.Read.ById", "Read `User` data by Id" },
+                    { new Guid("25180000-ac14-0242-1ccb-08dae66048f8"), "User.Delete", "Delete `User` data" },
+                    { new Guid("25180000-ac14-0242-1cd0-08dae66048f8"), "User.Create", "Create `User` data" },
+                    { new Guid("25180000-ac14-0242-1cd4-08dae66048f8"), "User.Update", "Update `User` data" },
+                    { new Guid("25180000-ac14-0242-1cdc-08dae66048f8"), "_", "All permissions" },
+                    { new Guid("25180000-ac14-0242-fac8-08dae66048f7"), "User", "All permissions in `User` scope" }
                 });
 
             migrationBuilder.InsertData(
@@ -147,24 +148,24 @@ namespace HelpDebugGov.Infrastructure.Migrations
                 columns: new[] { "Id", "Description", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("e7090000-ac14-0242-25ba-08dae5dd5501"), "Any logged-in user", "User" },
-                    { new Guid("e7090000-ac14-0242-2a54-08dae5dd5501"), "Has all permissions", "Superuser" }
+                    { new Guid("25180000-ac14-0242-8fe0-08dae66048f8"), "Any logged-in user", "User" },
+                    { new Guid("25180000-ac14-0242-9509-08dae66048f8"), "Has all permissions", "Superuser" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Email", "Handle", "Name", "Password" },
-                values: new object[] { new Guid("e7090000-ac14-0242-4eb3-08dae5dd554d"), "tangimhossain1@gmail.com", "audacioustux", "Audacious Tux", "$2a$11$1TlORiQWp81dlHBjzXUAHeyi60AEZtb8w26.pLTR/untsPVlufWSK" });
+                values: new object[] { new Guid("25180000-ac14-0242-a029-08dae6604931"), "tangimhossain1@gmail.com", "audacioustux", "Audacious Tux", "$2a$11$CZHFgSpXcqTY9ZSH26gGQuGFBv27z8KknzjWolZUIJ04ATnBXgcxW" });
 
             migrationBuilder.InsertData(
                 table: "PermissionRole",
                 columns: new[] { "PermissionsId", "RolesId" },
-                values: new object[] { new Guid("e7090000-ac14-0242-9d92-08dae5dd5500"), new Guid("e7090000-ac14-0242-2a54-08dae5dd5501") });
+                values: new object[] { new Guid("25180000-ac14-0242-1cdc-08dae66048f8"), new Guid("25180000-ac14-0242-9509-08dae66048f8") });
 
             migrationBuilder.InsertData(
                 table: "RoleUser",
                 columns: new[] { "RolesId", "UsersId" },
-                values: new object[] { new Guid("e7090000-ac14-0242-2a54-08dae5dd5501"), new Guid("e7090000-ac14-0242-4eb3-08dae5dd554d") });
+                values: new object[] { new Guid("25180000-ac14-0242-9509-08dae66048f8"), new Guid("25180000-ac14-0242-a029-08dae6604931") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_PermissionRole_RolesId",

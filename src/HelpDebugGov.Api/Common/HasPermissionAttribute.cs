@@ -5,11 +5,11 @@ using ISession = HelpDebugGov.Domain.Auth.ISession;
 namespace HelpDebugGov.Api.Common;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-public class PermissionsAttribute : Attribute, IAsyncActionFilter
+public class HasPermissionAttribute : Attribute, IAsyncActionFilter
 {
     private readonly string _permission;
 
-    public PermissionsAttribute(string permission)
+    public HasPermissionAttribute(string permission)
     {
         _permission = permission;
     }

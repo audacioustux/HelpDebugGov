@@ -1,7 +1,9 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 {
 	"name": "HelpDebugGov - devcontainer",
-	"initializeCommand": "touch .env",
+	"initializeCommand": [
+		".devcontainer/scripts/init"
+	],
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
@@ -38,5 +40,5 @@
 		5432
 	],
 	"features": {},
-	"postCreateCommand": ".devcontainer/bin/post_create.sh"
+	"postCreateCommand": ".devcontainer/scripts/post_create.sh"
 }

@@ -50,7 +50,7 @@
 
 ### Notes
 
-- bin/merge-gitignore.sh - merge all *.gitignore files into one
+- scripts/merge-gitignore.sh - merge all *.gitignore files into one
 - all sensitive data should be stored in environment variables via `.env` file
 - errors should not expose sensitive data to the client
 - devcontainer is used for development and highly recommended
@@ -67,10 +67,6 @@ dotnet ef database drop --startup-project ./src/HelpDebugGov.Api/ --project ./sr
 
 # Web UI in dev mode
 pnpm run dev
-
-# Miscellaneous
-## merge all *.gitignore
-bin/merge-gitignore.sh
 ```
 
 ### TODO

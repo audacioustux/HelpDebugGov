@@ -31,9 +31,7 @@ public class AuthenticateHandler : IRequestHandler<AuthenticateRequest, Jwt?>
     {
         var user = await _context.Users.FirstOrDefaultAsync(x => x.Email.ToLower() == request.Email.ToLower(), cancellationToken);
         if (user == null || !BCrypt.EnhancedVerify(request.Password, user.Password))
-        {
             return null;
-        }
 
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(_appSettings.Secret);

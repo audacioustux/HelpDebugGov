@@ -5,7 +5,6 @@ namespace HelpDebugGov.Application.Features.Auth.Authenticate;
 
 public record AuthenticateRequest : IRequest<Jwt?>
 {
-    public string Email { get; init; } = null!;
-
-    public string Password { get; init; } = null!;
+    public required string Email { get; init; }
+    public required string Password { get; init; }
 }

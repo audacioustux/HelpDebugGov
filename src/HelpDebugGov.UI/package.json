@@ -43,5 +43,9 @@
 		"vite-imagetools": "^4.0.12",
 		"vitest": "^0.25.3"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@tailwindcss/typography": "^0.5.8",
+		"daisyui": "^2.46.0"
+	}
 }

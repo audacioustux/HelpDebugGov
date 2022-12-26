@@ -1,3 +1,4 @@
+// TODO: namespace should be Features.Auth;
 namespace HelpDebugGov.Application.Features.Auth.Authenticate;
 
 using System;

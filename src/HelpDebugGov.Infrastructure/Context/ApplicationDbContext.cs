@@ -13,6 +13,9 @@ public class ApplicationDbContext : DbContext, IContext
     public required DbSet<User> Users { get; set; }
     public required DbSet<Role> Roles { get; set; }
     public required DbSet<Permission> Permissions { get; set; }
+    public required DbSet<Organization> Organizations { get; set; }
+    public required DbSet<Issue> Issues { get; set; }
+    public required DbSet<Comment> Comments { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

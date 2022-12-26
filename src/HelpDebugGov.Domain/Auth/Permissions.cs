@@ -11,8 +11,10 @@ public static class Permissions
             new Permission { Action = $"{module}.Read", Description = $"Read `{module}` data" },
             new Permission { Action = $"{module}.Read.ById", Description = $"Read `{module}` data by Id" },
             new Permission { Action = $"{module}.Delete", Description = $"Delete `{module}` data" },
+            new Permission { Action = $"{module}.Delete.Own", Description = $"Delete own `{module}` data" },
             new Permission { Action = $"{module}.Create", Description = $"Create `{module}` data" },
-            new Permission { Action = $"{module}.Update", Description = $"Update `{module}` data" }
+            new Permission { Action = $"{module}.Update", Description = $"Update `{module}` data" },
+            new Permission { Action = $"{module}.Update.Own", Description = $"Update own `{module}` data" }
         };
     }
 }

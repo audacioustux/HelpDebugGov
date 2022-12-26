@@ -10,6 +10,9 @@ public interface IContext : IAsyncDisposable, IDisposable
     public DbSet<User> Users { get; }
     public DbSet<Permission> Permissions { get; }
     public DbSet<Role> Roles { get; }
+    public DbSet<Organization> Organizations { get; }
+    public DbSet<Issue> Issues { get; }
+    public DbSet<Comment> Comments { get; }
 
     public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

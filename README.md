@@ -54,6 +54,7 @@
 - all sensitive data should be stored in environment variables via `.env` file
 - errors should not expose sensitive data to the client
 - devcontainer is used for development and highly recommended
+- an account with all permissions (superuser) is created (as seed) with given credentials in `.env` (SUPERUSER_*)
 
 #### Commands
 
@@ -73,9 +74,12 @@ pnpm run dev
 
 - [ ] Add tests
 - [ ] Add Production Setup
-- [ ] Add OpenTelemetry
+- [ ] Complete OpenTelemetry setup
+- [ ] Migrations should be included in version control, but ensure no sensitive data is included
 - [ ] resolve `TODO:`s in code (find all with `$ rg "// TODO:"`)
+- [ ] <https://github.com/npgsql/npgsql/issues/4592> - workaround: re-`run`
 
 ### References
 
 - <https://learn.microsoft.com/en-us/aspnet/core/security/authorization/iauthorizationpolicyprovider?view=aspnetcore-7.0>
+- <https://daisyui.com>
